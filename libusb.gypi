@@ -34,10 +34,12 @@
       'defines': [
         'ENABLE_LOGGING=1',
       ],
-      'cflags': [
-        '-w',
-      ],
       'conditions': [
+        [ 'OS != "win"', {
+          'cflags': [
+            '-Wno-sign-compare',
+          ]
+        }],
         [ 'OS == "linux" or OS == "android" or OS == "mac"', {
           'sources': [
             'libusb/libusb/os/poll_posix.c',
